@@ -1,13 +1,54 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather app</title>
-    <!-- Don't forget to link the CSS file here! -->
-  </head>
-  <body>
-    <h1>Weather app</h1>
-  <!-- Don't forget to connect the JavaScript file -->
-  </body>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Swingin' in the rain?</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>Swingin' in the rain?</h1>
+
+  <div class="app">
+
+
+    <div class="main">
+      <h2>Vad blir det för väder? 🌤️</h2>
+
+      <input id="cityInput" type="text" placeholder="Sök din stad..." />
+      <button id="searchBtn">Ge mig vädret!</button>
+
+      <div id="weather"></div>
+      <div class="forecast"></div>
+    </div>
+
+
+    <div class="sidebar">
+      <h2>Mest sökta</h2>
+      <ul>
+        <li class="fav-city">Stockholm</li>
+        <li class="fav-city">Göteborg</li>
+        <li class="fav-city">Malmö</li>
+        <li class="fav-city">Sundsvall</li>
+        <li class="fav-city">Umeå</li>
+        <li class="fav-city">Narvik</li>
+        <li class="fav-city">London</li>
+        <li class="fav-city">New York</li>
+        <li class="fav-city">Paris</li>
+      </ul>
+    </div>
+
+    */space-knapp*/
+    <div>
+      <button id="spaceBtn">Visa personer i rymden</button>
+      <div id="space"></div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
 </html>

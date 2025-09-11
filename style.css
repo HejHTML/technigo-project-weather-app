@@ -1,3 +1,60 @@
 body {
-  background: blue;
+  font-family: sans-serif;
+  margin: 50px;
+  padding: 0;
+  background: #eef;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  gap: 20px;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.main {
+  background: #3396D3;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.sidebar {
+  background: #67C090;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.fav-city {
+  font-weight: bold;
+}
+
+
+.sidebar li {
+  cursor: pointer;
+  padding: 5px 0;
+}
+
+.sidebar li:hover {
+  color: yellow;
+}
+
+#weather {
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    margin-top: 20px;
+  }
 }
