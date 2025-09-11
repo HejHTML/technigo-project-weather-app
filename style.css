@@ -2,12 +2,38 @@ body {
   font-family: sans-serif;
   margin: 50px;
   padding: 0;
-  background: #eef;
+  background: rgb(185, 215, 78);
+}
+
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #4a90e2;
+  padding: 10px;
+  color: white;
+}
+
+.navbar .favorites button,
+.navbar .search button,
+.navbar .space button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.navbar .favorites button:hover,
+.navbar .search button:hover,
+.navbar .space button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .app {
   display: grid;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
   padding: 20px;
   min-height: 100vh;
