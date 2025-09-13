@@ -1,86 +1,87 @@
 body {
-  font-family: sans-serif;
-  margin: 50px;
-  padding: 0;
-  background: rgb(185, 215, 78);
+  font-family: "Helvetica Neue", sans-serif;
+  background: #f5f5f5;
+  margin: 0;
+  padding: 40px;
 }
 
-.navbar {
+.weather-container {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #4a90e2;
-  padding: 10px;
-  color: white;
-}
-
-.navbar .favorites button,
-.navbar .search button,
-.navbar .space button {
-  margin: 0 5px;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.navbar .favorites button:hover,
-.navbar .search button:hover,
-.navbar .space button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-.app {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  flex-direction: column;
   gap: 20px;
-  padding: 20px;
-  min-height: 100vh;
+  align-items: center;
 }
 
-.main {
-  background: #3396D3;
-  color: white;
-  padding: 20px;
-  border-radius: 8px;
-}
-
-.sidebar {
-  background: #67C090;
+/* Kortens grundlayout */
+.weather-card {
+  max-width: 300px;
+  width: 100%;
   padding: 20px;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
 }
 
-.sidebar ul {
-  list-style: none;
-  padding-left: 0;
+/* Header */
+.weather-header {
+  font-size: 18px;
+  line-height: 1.4;
 }
 
-.fav-city {
+/* Ikon */
+.weather-icon {
+  font-size: 40px;
+}
+
+/* Text */
+.weather-text h2 {
+  font-size: 30px;
   font-weight: bold;
+  line-height: 1.4;
+  margin: 0;
 }
 
-
-.sidebar li {
-  cursor: pointer;
-  padding: 5px 0;
+/* Prognos-lista */
+.forecast {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.sidebar li:hover {
-  color: yellow;
+.forecast li {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dotted #296b25;
+  padding: 4px 0;
+  font-size: 14px;
 }
 
-#weather {
-  margin-top: 20px;
+/* Tema-färger */
+.weather-card.sunny {
+  background: #f3e6ab;
+  /* ljusgul */
+  color: #336b32;
 }
 
-@media (max-width: 768px) {
-  .app {
-    grid-template-columns: 1fr;
-  }
+.weather-card.rain {
+  background: #cce6ff;
+  /* ljusblå */
+  color: #1a1a1a;
+}
 
-  .sidebar {
-    margin-top: 20px;
+.weather-card.cloudy {
+  background: #fff;
+  /* vit */
+  color: #ff6666;
+  /* rödaktig text */
+}
+
+/* Gör korten i rad på större skärm */
+@media (min-width: 768px) {
+  .weather-container {
+    flex-direction: row;
+    justify-content: center;
   }
 }
