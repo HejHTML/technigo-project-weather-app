@@ -76,6 +76,9 @@ function getWeather(apiCity, displayName) {
                 return;
             }
 
+            document.querySelector("h1").textContent = displayName;
+
+
             const weatherContainer = document.getElementById("weather");
             weatherContainer.innerHTML = ""; // Rensa tidigare kort
 
