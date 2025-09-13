@@ -29,6 +29,16 @@ const weatherMap = {
     "thunderstorm": "Åskväder",
     "mist": "Dimma"
 };
+// Funktion för att välja egen ikon baserat på väder
+function getCustomIcon(description) {
+    const desc = description.toLowerCase();
+    if (desc.includes("rain") || desc.includes("drizzle")) return "☂️";       // paraply
+    if (desc.includes("clear")) return "🕶️";                                // solglasögon
+    if (desc.includes("cloud")) return "☁️";                                 // moln
+    if (desc.includes("snow")) return "❄️";                                  // snö
+    if (desc.includes("thunderstorm")) return "🌩️";                         // åskväder
+    return "🌤️"; // standardikon
+}
 
 function getTheme(description) {
     const desc = description.toLowerCase();
@@ -71,7 +81,7 @@ function getWeather(apiCity, displayName) {
 
             const description = weatherMap[data.weather[0].description] || data.weather[0].description;
             const theme = getTheme(data.weather[0].description);
-            const iconUrl = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+            const weatherIcon = getCustomIcon(data.weather[0].description);
             const windDeg = data.wind.deg;
             const windSpeed = Math.round(data.wind.speed);
             const sunrise = new Date(data.sys.sunrise * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -82,15 +92,15 @@ function getWeather(apiCity, displayName) {
             card.innerHTML = `
         <div class="weather-header-left">
           <div class="top-row">
-            <p>${description}</p>
+            <p>${description} |</p>
             <p>${data.main.temp.toFixed(1)}°C</p>
           </div>
           <p class="sunrise">Soluppgång: ${sunrise}</p>
-          <p class="sunset">Solnedgång: ${sunset}</p>
-          <p class="weather-detail">Det är just nu ${description.toLowerCase()} ute.</p>
+          <p class="sunset">Solnedgång: ${sunset}</p></div>
+          <p class="weather-detail">Det är  ${description.toLowerCase()} ute just nu.</p>
         </div>
         <div class="weather-main">
-          <div class="weather-icon"><img src="${iconUrl}" alt="${description}"></div>
+          <div class="weather-icon">${weatherIcon}</div>
           <p>Vind: ${windSpeed} m/s <span class="wind-arrow" style="display:inline-block; transform: rotate(${windDeg}deg);">➤</span></p>
           <p>Luftfuktighet: ${data.main.humidity}%</p>
           <ul class="forecast"></ul>
