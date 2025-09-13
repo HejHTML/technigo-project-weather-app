@@ -35,7 +35,7 @@ const weatherMap = {
     "mist": "Dimma"
 };
 
-// Dynamisk tema baserat på väderbeskrivning
+// Dynamiskt tema baserat på väderbeskrivning
 function getTheme(description) {
     const desc = description.toLowerCase();
     if (desc.includes("rain") || desc.includes("drizzle") || desc.includes("thunderstorm")) return "rain";
@@ -66,7 +66,7 @@ document.querySelectorAll(".fav-city").forEach(item => {
     });
 });
 
-// Hämta väder och skapa kort med dynamiskt tema
+// Hämta väder och skapa kort med alla detaljer
 function getWeather(apiCity, displayName) {
     const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(
         `https://api.openweathermap.org/data/2.5/weather?q=${apiCity}&units=metric&lang=en&appid=${apiKey}`
@@ -83,6 +83,7 @@ function getWeather(apiCity, displayName) {
                 const iconUrl = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
                 const windDeg = data.wind.deg;
                 const windSpeed = Math.round(data.wind.speed);
+
                 // Sunrise & Sunset
                 const sunrise = new Date(data.sys.sunrise * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                 const sunset = new Date(data.sys.sunset * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -91,14 +92,18 @@ function getWeather(apiCity, displayName) {
                 const card = document.createElement("div");
                 card.className = `weather-card ${theme}`;
                 card.innerHTML = `
-                    <div class="weather-header">${displayName}, idag</div>
-                    <div class="weather-icon"><img src="${iconUrl}" alt="${description}"></div>
-                    <div class="weather-text"><h2>${description}, ${data.main.temp.toFixed(1)} °C</h2></div>
-                    <ul class="forecast"></ul>
-                    <p>Vind: ${windSpeed} m/s <span class="wind-arrow" style="display:inline-block; transform: rotate(${windDeg}deg);">➤</span></p>
-                    <p>Luftfuktighet: ${data.main.humidity}%</p>
-                     <p>Sol upp: ${sunrise}</p>
-                    <p>Sol ned: ${sunset}</p>
+                    <div class="weather-header-left">
+                        <p>${description}</p>
+                        <p>Soluppgång: ${sunrise}</p>
+                        <p>Solnedgång: ${sunset}</p>
+                        <p class="weather-detail">Det är just nu ${description.toLowerCase()} med ${data.main.temp.toFixed(1)}°C.</p>
+                    </div>
+                    <div class="weather-main">
+                        <div class="weather-icon"><img src="${iconUrl}" alt="${description}"></div>
+                        <p>Vind: ${windSpeed} m/s <span class="wind-arrow" style="display:inline-block; transform: rotate(${windDeg}deg);">➤</span></p>
+                        <p>Luftfuktighet: ${data.main.humidity}%</p>
+                        <ul class="forecast"></ul>
+                    </div>
                 `;
                 weatherContainer.appendChild(card);
 
