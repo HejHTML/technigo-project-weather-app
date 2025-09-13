@@ -1,3 +1,4 @@
+/* Grundinställningar */
 body {
   font-family: "Helvetica Neue", sans-serif;
   background: #f5f5f5;
@@ -5,17 +6,37 @@ body {
   padding: 40px;
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+  /* staplar sökfält, knapp och kort */
+  align-items: flex-start;
+  /* vänsterjusterar allt */
+  gap: 10px;
+}
+
+/* Sökfält och knapp */
+#cityInput,
+#searchBtn {
+  font-size: 16px;
+  padding: 6px 10px;
+}
+
+/* Weather container */
 .weather-container {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  align-items: center;
+  padding: 0;
+  width: 100%;
+  max-width: 320px;
+  /* matchar kortens maxbredd */
 }
 
 /* Kortens grundlayout */
 .weather-card {
-  max-width: 300px;
   width: 100%;
+  font-size: 14px;
   padding: 20px;
   border-radius: 8px;
   display: flex;
@@ -24,64 +45,93 @@ body {
   box-sizing: border-box;
 }
 
-/* Header */
-.weather-header {
-  font-size: 18px;
-  line-height: 1.4;
+/* Header vänsterdel */
+.weather-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-/* Ikon */
-.weather-icon {
-  font-size: 40px;
+.weather-header-left .top-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-/* Text */
-.weather-text h2 {
-  font-size: 30px;
-  font-weight: bold;
-  line-height: 1.4;
+.weather-header-left p.sunrise,
+.weather-header-left p.sunset {
   margin: 0;
+  font-size: 14px;
 }
 
-/* Prognos-lista */
+.weather-detail {
+  font-size: 16px;
+  margin: 4px 0 0 0;
+}
+
+/* Weather main */
+.weather-main {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.weather-icon img {
+  width: 60px;
+  height: 60px;
+}
+
+/* Prognoslista */
 .forecast {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 10px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .forecast li {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px dotted #296b25;
+  display: grid;
+  grid-template-columns: 80px 40px 1fr 50px;
+  /* datum | ikon | beskrivning | temp */
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px dotted #aaa;
   padding: 4px 0;
   font-size: 14px;
+}
+
+.forecast li img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.forecast li span {
+  text-align: center;
 }
 
 /* Tema-färger */
 .weather-card.sunny {
   background: #f3e6ab;
-  /* ljusgul */
   color: #336b32;
 }
 
 .weather-card.rain {
   background: #cce6ff;
-  /* ljusblå */
   color: #1a1a1a;
 }
 
 .weather-card.cloudy {
   background: #fff;
-  /* vit */
   color: #ff6666;
-  /* rödaktig text */
 }
 
 /* Gör korten i rad på större skärm */
 @media (min-width: 768px) {
   .weather-container {
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
   }
 }

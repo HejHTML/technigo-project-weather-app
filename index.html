@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="sv">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VISSLA</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -12,7 +12,6 @@
   <header>
     <nav class="navbar">
       <div class="logo"></div>
-
       <div class="favorites">
         <button class="fav-city">Stockholm</button>
         <button class="fav-city">Göteborg</button>
@@ -29,19 +28,17 @@
   <h1>VISSLA</h1>
 
   <div class="app">
-
     <div class="main">
       <h2>Väder🌤️</h2>
-
-      <input id="cityInput" type="text" placeholder="Sök din stad..." />
-      <button id="searchBtn">Ge mig vädret!</button>
-
-      <!-- Weather container som JS kommer fylla dynamiskt -->
-      <div id="weather" class="weather-container">
-        <!-- Inget statiskt kort här -->
+      <div class="search-row">
+        <input id="cityInput" type="text" placeholder="Sök din stad..." />
+        <button id="searchBtn">Visa prognos</button>
       </div>
 
+      <!-- Weather container -->
+      <div id="weather" class="weather-container"></div>
     </div>
+
 
   </div>
 
