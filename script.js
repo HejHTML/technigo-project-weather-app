@@ -36,8 +36,8 @@ function getCustomDescription(description, temp) {
 
     if (desc.includes("rain")) return `Ta regnjackan – det regnar och temperaturen är ${temp.toFixed(0)} grader.`;
     if (desc.includes("clear")) return `Solen skiner - kom ihåg solskydd! Det är ${temp.toFixed(0)} grader ute.`;
-    if (desc.includes("cloud")) return `Molnigt - bra fotoväder📷 alltså och  ${temp.toFixed(0)} grader.`;
-    if (desc.includes("snow")) return `Snöfall väntas – ta fram snöskyffeln och bygg en ljuslykta! Temperaturen är ${temp.toFixed(1)} grader.`;
+    if (desc.includes("cloud")) return `Molnigt och  ${temp.toFixed(0)} grader.`;
+    if (desc.includes("snow")) return `Snöfall väntas – ta fram snöskyffeln och bygg en ljuslykta! Temperaturen är ${temp.toFixed(0)} grader.`;
     if (desc.includes("thunderstorm")) return `Åska i luften! Temperaturen ligger runt ${temp.toFixed(0)} grader.`;
 
     return `Just nu är det ${description.toLowerCase()} och ${temp.toFixed(1)}°C.`;
