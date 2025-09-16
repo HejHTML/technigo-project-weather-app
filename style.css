@@ -8,7 +8,6 @@ body {
 .navbar .favorites {
   display: flex;
   gap: 10px;
-  /* avstånd mellan knapparna */
   flex-wrap: wrap;
   justify-content: flex-start;
 
@@ -16,35 +15,23 @@ body {
 
 .navbar .fav-city {
   background-color: #fff;
-  /* bakgrund */
   color: #333;
-  /* textfärg */
   border: 1px solid #ccc;
-  /* kantlinje */
   border-radius: 4px;
-  /* rundade hörn */
   padding: 6px 12px;
-  /* inre marginaler */
   font-size: 14px;
-  /* textstorlek */
   cursor: pointer;
-  /* muspekare */
   transition: all 0.2s ease;
-  /* mjuk övergång vid hover */
 }
 
 .navbar .fav-city:hover {
   background-color: #f0f0f0;
-  /* ändrar bakgrund vid hover */
   color: #000;
-  /* textfärg vid hover */
   border-color: #999;
-  /* kantlinjefärg */
 }
 
 .navbar .fav-city.active {
   background-color: #336b32;
-  /* t.ex. grönt tema */
   color: #805656;
   border-color: #336b32;
 }
@@ -62,11 +49,10 @@ body {
   align-items: center;
   gap: 10px;
   max-width: 300px;
-  /* samma bredd som kortet */
   width: 100%;
 }
 
-/* Input får växa inom container */
+/* Input får växa i container */
 .search-container input {
   flex: 1;
 }
@@ -231,7 +217,6 @@ body {
   .navbar .favorites {
     display: flex;
     gap: 10px;
-    /* avstånd mellan knapparna */
     flex-wrap: wrap;
     justify-content: center;
 
@@ -239,7 +224,6 @@ body {
 
   .search-container {
     max-width: 350px;
-    /* lite bredare än mobil */
     width: 100%;
   }
 
@@ -259,7 +243,7 @@ body {
   }
 }
 
-/* Dator/desktop upp till 1600px */
+/* Dator upp till 1600px */
 @media (min-width: 1025px) and (max-width: 1600px) {
   h1 {
     text-align: center;
@@ -275,7 +259,6 @@ body {
   .navbar .favorites {
     display: flex;
     gap: 10px;
-    /* avstånd mellan knapparna */
     flex-wrap: wrap;
     justify-content: center;
 
@@ -288,14 +271,12 @@ body {
 
   .weather-container {
     flex-direction: column;
-    /* behåll kolumn även på desktop */
     align-items: center;
     gap: 20px;
   }
 
   .weather-card {
     max-width: 500px;
-    /* bredare kort för desktop */
     width: 500px;
   }
 
