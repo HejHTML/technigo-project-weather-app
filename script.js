@@ -1,6 +1,6 @@
 const apiKey = "1ea2dcad17037699b9909b51194ec2da";
 
-// --- Stadskarta & normalisering ---
+/* Stadskarta & normalisering */
 const cityMap = {
     "Stockholm": "Stockholm,SE",
     "Göteborg": "Gothenburg,SE",
@@ -21,7 +21,7 @@ function getCityForApi(name) {
     return cityMap[name] || normalizeCity(name);
 }
 
-/*Översättning & custom text/ikoner*/
+/* Översättning & custom text/ikoner */
 const weatherMap = {
     "light rain": "Duggregn",
     "moderate rain": "Måttligt regn",
@@ -39,7 +39,7 @@ const weatherMap = {
 
 function getCustomDescription(description, temp) {
     const desc = description.toLowerCase();
-    if (desc.includes("rain")) return `Ta regnjackan – det regnar och temperaturen är ${temp.toFixed(0)}°C.`;
+    if (desc.includes("rain")) return `Ta regnjacka eller paraply – det regnar och temperaturen är ${temp.toFixed(0)}°C.`;
     if (desc.includes("clear")) return `Solen skiner - kom ihåg solskydd! ${temp.toFixed(0)}°C.`;
     if (desc.includes("cloud")) return `Molnigt och ${temp.toFixed(0)}°C.`;
     if (desc.includes("snow")) return `Snöfall väntas – temperatur ${temp.toFixed(0)}°C.`;
@@ -64,7 +64,7 @@ function getTheme(description) {
     return "sunny";
 }
 
-/*DOM-element*/
+/* DOM-element */
 const weatherContainer = document.getElementById("weather");
 const searchInput = document.getElementById("cityInput");
 const searchBtn = document.getElementById("searchBtn");
@@ -72,7 +72,7 @@ const favBtns = document.querySelectorAll(".fav-city");
 const locBtn = document.getElementById("locBtn");
 const h1Title = document.querySelector("h1");
 
-/*Event listeners*/
+/* Event listeners */
 searchBtn.addEventListener("click", () => {
     const input = searchInput.value.trim();
     if (input) getWeather(getCityForApi(input), input);
@@ -97,7 +97,7 @@ if (locBtn) {
     locBtn.addEventListener("click", getLocationWeather);
 }
 
-/*Huvudfunktion: hämta väder*/
+/* Huvudfunktion: hämta väder */
 function getWeather(apiCity, displayName) {
     const url = `https://api.allorigins.win/raw?url=${encodeURIComponent(
         `https://api.openweathermap.org/data/2.5/weather?q=${apiCity}&units=metric&appid=${apiKey}`
@@ -131,7 +131,7 @@ function getWeather(apiCity, displayName) {
         .catch(err => console.error("Fel vid hämtning:", err));
 }
 
-/*Skapa kort*/
+/* Skapa kort */
 function createWeatherCard(desc, rawDesc, temp, icon, theme, windSpeed, windDeg, humidity, sunrise, sunset) {
     const card = document.createElement("div");
     card.className = `weather-card ${theme}`;
@@ -155,7 +155,7 @@ function createWeatherCard(desc, rawDesc, temp, icon, theme, windSpeed, windDeg,
     return card;
 }
 
-/*Prognos*/
+/* Prognos */
 function getForecast(apiCity, forecastElement) {
     const url = `https://api.openweathermap.org/data/2.5/forecast?q=${apiCity}&units=metric&appid=${apiKey}`;
     fetch(url)
@@ -183,7 +183,7 @@ function getForecast(apiCity, forecastElement) {
         .catch(err => console.error("Fel vid hämtning av prognos:", err));
 }
 
-/* Hämta platsens väder*/
+/* Hämta platsens väder */
 function getLocationWeather() {
     if (!navigator.geolocation) {
         alert("Geolocation stöds inte i din webbläsare.");
@@ -235,4 +235,28 @@ function getWeatherByCoords(lat, lon) {
 }
 
 function getForecastByCoords(lat, lon, forecastElement) {
-    const url = `https://api.openweathermap.org/data/2.
+    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+    fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            const daily = data.list.filter(item => item.dt_txt.includes("12:00:00")).slice(0, 4);
+            let html = "";
+            daily.forEach(day => {
+                const date = new Date(day.dt * 1000).toLocaleDateString([], { weekday: 'short', day: 'numeric', month: 'numeric' });
+                const tempAvg = ((day.main.temp_min + day.main.temp_max) / 2).toFixed(0);
+                const iconUrl = `https://openweathermap.org/img/wn/${day.weather[0].icon}.png`;
+                const description = weatherMap[day.weather[0].description] || day.weather[0].description;
+
+                html += `
+                    <li>
+                        <span>${date}</span>
+                        <img src="${iconUrl}" alt="${description}">
+                        <span>${description}</span>
+                        <span>${tempAvg}°C</span>
+                    </li>
+                `;
+            });
+            forecastElement.innerHTML = html;
+        })
+        .catch(err => console.error("Fel vid hämtning av prognos (coords):", err));
+}

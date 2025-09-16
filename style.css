@@ -83,7 +83,6 @@ body {
 .weather-header-left {
   display: flex;
   flex-direction: column;
-  /* huvudkolumn */
   gap: 4px;
 }
 
@@ -158,21 +157,18 @@ body {
 /* Tema-färger */
 .weather-card.sunny {
   background: #f3e6ab;
-  /* ljusgul */
   color: #336b32;
 }
 
 .weather-card.rain {
   background: #cce6ff;
-  /* ljusblå */
   color: #1a1a1a;
 }
 
 .weather-card.cloudy {
   background: #fff;
-  /* vit */
   color: #ff6666;
-  /* rödaktig text */
+
 }
 
 /* Forecast och header följer kortets färg */
